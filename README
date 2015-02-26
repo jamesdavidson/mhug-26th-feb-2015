@@ -1,0 +1,44 @@
+Melbourne Haskell Users Group, 26th February 2015
+
+### Hello world via TCP
+
+How to write simple network servers in Haskell and have fun with GHC’s green threads too.
+
+Three demonstrations:
+ * a hello world tcp server (fifteen lines of code)
+ * multi threaded hello world tcp server (sixteen lines of code)
+ * in-memory key-value buzz-word ultra-low-performance data-store tcp server (fifty lines of code)
+
+Thanks for listening! James
+
+### Links
+
+The original Concurrent Haskell paper (1996) by Simon Peyton Jones, Andrew D. Gordon, and Sigbjorn Finne:
+http://www.haskell.org/ghc/docs/papers/concurrent-haskell.ps.gz
+
+A tidy little introduction:
+http://en.wikipedia.org/wiki/Concurrent_Haskell
+
+The blog post I followed to get started:
+http://blog.lahteenmaki.net/2013/01/haskell-and-non-blocking-asynchronous-io.html
+
+A great tutorial by Simon Peyton-Jones:
+https://www.fpcomplete.com/school/advanced-haskell/beautiful-concurrency
+
+### Excerpt from the Concurrent Haskell paper
+
+Some applications are most easily expressed in a programming language that supports concurrency, notably interactive and distributed systems. We propose extensions to the purely-functional language Haskell that allows it to express explicitly concurrent applications; we call the resulting language Concurrent Haskell.
+
+The resulting system appears to be both expressive and efficient, and we give a number of examples of useful abstractions that can be built from our primitives.
+
+We have developed a freely-available implementation of Concurrent Haskell, and are now using it as a substrate for a graphical user interface toolkit.
+
+### MIT LICENSE
+
+Copyright (c) 2015 James Davidson
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
