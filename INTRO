@@ -1,0 +1,10 @@
+“Hello world via TCP”
+
+How to write simple network servers in Haskell and have fun with GHC’s green
+threads too.
+
+Three demonstrations:
+ * a hello world tcp server (fifteen lines of code)
+ * multi threaded hello world tcp server (sixteen lines of code)
+ * in-memory key-value buzz-word ultra-low-performance data-store tcp server
+   (fifty lines of code)
