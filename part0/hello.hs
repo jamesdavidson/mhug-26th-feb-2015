@@ -1,3 +1,4 @@
+import Control.Monad (forever)
 import System.IO
 import Network
 
@@ -10,4 +11,3 @@ loop socket = do
   hPutStr connection "hello world\r\n"
   hFlush connection
   hClose connection
-

@@ -4,6 +4,7 @@ import Data.IORef (IORef, newIORef, readIORef, atomicModifyIORef')
 import System.IO (hGetLine, hPutStr, hFlush, hClose)
 import Control.Concurrent (forkIO, threadDelay)
 import System.Random (randomRIO)
+import Control.Monad (forever)
 import Text.Read (readMaybe)
 import Network
 
@@ -26,12 +27,11 @@ main :: IO ()
 main = withSocketsDo $ do
   ref <- newIORef []
   socket <- listenOn $ PortNumber 1234
-  loop socket ref
+  forever $ loop socket ref
 
-loop :: Socket -> IORef [Triple] -> IO ()
 loop socket ref = do
   (connection,_,_) <- accept socket
-  _ <- forkIO $ do
+  forkIO $ do
     command <- hGetLine connection
     response <- case (readMaybe command) of
       Nothing -> do
@@ -47,7 +47,6 @@ loop socket ref = do
     hPutStr connection $ show response
     hFlush connection
     hClose connection
-  loop socket ref
 
 retrieve :: Key -> TransactionId -> [Triple] -> Value
 retrieve k t [] = ""
