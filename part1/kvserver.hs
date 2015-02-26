@@ -1,4 +1,5 @@
 -- A little TCP server that supports a request-response protocol.
+-- Implements an in-memory key-value dictionary.
 -- One action per connection, basic transactionality, no garbage collection.
 import Data.IORef (IORef, newIORef, readIORef, atomicModifyIORef')
 import System.IO (hGetLine, hPutStr, hFlush, hClose)
@@ -17,11 +18,10 @@ data Request = PING
              | STORE Key Value deriving (Read,Show)
 
 data Response = PONG
+              | VALUE Value
               | OK TransactionId
-              | INVALID
-              | VALUE Value deriving (Read)
+              | INVALID deriving (Read)
 
-main :: IO ()
 main = withSocketsDo $ do
   ref <- newIORef []
   socket <- listenOn $ PortNumber 1234
