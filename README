@@ -33,6 +33,14 @@ The resulting system appears to be both expressive and efficient, and we give a 
 
 We have developed a freely-available implementation of Concurrent Haskell, and are now using it as a substrate for a graphical user interface toolkit.
 
+### Contributions
+
+Thanks to @koterpillar, @xpika and @andykitchen for changes and additions.
+
+### Running
+
+You can just use the runghc command that comes with the Glasgow Haskell Compiler. I doubt you will need to install any packages using cabal but I may be wrong. You can run the tests using nodejs, you'll just need to ```npm install async```.
+
 ### MIT LICENSE
 
 Copyright (c) 2015 James Davidson
