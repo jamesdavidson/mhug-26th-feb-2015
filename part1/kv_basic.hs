@@ -21,26 +21,23 @@ data Response = PONG
               | INVALID deriving (Read)
 
 main = withSocketsDo $ do
-  ref <- newIORef []
   socket <- listenOn $ PortNumber 1234
-  forever $ loop socket ref
+  loop socket []
 
-loop :: Socket -> IORef [(Key,Value)] -> IO ()
+loop :: Socket -> [(Key, Value)] -> IO b
 loop socket ref = do
   (connection,_,_) <- accept socket
   command <- hGetLine connection
-  response <- case (readMaybe command) of
-    Nothing -> do
-      return INVALID
-    Just PING -> do
-      return PONG
-    Just (RETRIEVE key) -> do
-      readIORef ref >>= return . VALUE . retrieve key
-    Just (STORE key value) -> do
-      atomicModifyIORef' ref (store (key,value)) >>= return . OK
+  let (ref',response) = case (readMaybe command) of {
+     Nothing -> (ref,INVALID)
+    ;Just PING -> (ref,PONG)
+    ;Just (RETRIEVE key) -> (ref,VALUE (retrieve key ref))
+    ;Just (STORE key value) -> (\(x,y)-> (x,OK y)) (store (key,value) ref) 
+    }
   hPutStr connection $ show response
   hFlush connection
   hClose connection
+  loop socket ref'
 
 retrieve :: Key -> [(Key,Value)] -> Value
 retrieve k [] = ""
